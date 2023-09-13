@@ -1,3 +1,4 @@
+import yaml
 import chardet
 
 
@@ -16,4 +17,8 @@ def read_text(file_path):
 
 def write_text(file_path, text):
     with open(file_path, 'w', encoding='UTF-8') as f:
-        f.write(text)
+        if (type(text) is str):
+            f.write(text)
+        else:
+            # json.dump(text, f, indent=2, ensure_ascii=False)
+            yaml.dump(text, f, encoding='utf-8', allow_unicode=True)

@@ -1,4 +1,3 @@
-import json
 import os
 
 aviutl_related_extensions = {'.abc',
@@ -32,7 +31,7 @@ aviutl_related_extensions = {'.abc',
 def ext_filter(files):
     return [
         file for file in files
-        if os.path.splitext(file)[1] in files
+        if os.path.splitext(file)[1] in aviutl_related_extensions
     ]
 
 
@@ -44,9 +43,8 @@ def get_files_and_folders(base_dir, relative_path='', depth=1, max_depth=4):
         return {"files": files, "folders": folders}
 
     items = os.listdir(base_dir)
-
-    # If a folder contains more than 10 items, ignore its content
-    if len(items) > 10:
+    # If a folder contains more than 8 items, ignore its content
+    if len(items) > 8:
         return {"files": files, "folders": folders}
 
     for item in items:
