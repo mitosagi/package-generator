@@ -1,3 +1,6 @@
 chardet
 tiktoken
 extractcontent3
+urlextract
+pyunpack
+https://github.com/wummel/patool/archive/refs/heads/master.zip
