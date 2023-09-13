@@ -40,7 +40,7 @@ write_text('workspace/package-info.txt', package_info)
 
 separater = '-'*16
 prompt = '\n'.join([
-    '今回インストールするパッケージのメタデータです。',
+    '今回インストールするパッケージの圧縮ファイルから読み取ったメタデータです。',
     read_text('workspace/package-info.txt'),
     separater,
     'Readmeファイルの説明です。',
