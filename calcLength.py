@@ -1,22 +1,19 @@
 from util.text_io import read_text, write_text
 from util.get_files import get_files_and_folders, ext_filter
 from util.extract_zip import extract
-from util.token import trim_token
+from util.token import trim_token, count_token
 from extractcontent3 import ExtractContent
 from urlextract import URLExtract
 import re
+import glob
 
-# extracter
+# extractcontent3
 extractor = ExtractContent()
 opt = {"threshold": 50}
 extractor.set_option(opt)
 
 # main
 package_info = {}
-
-texts_readme = read_text(
-    'data/NVEnc_readme.txt')
-write_text('workspace/trim-readme.txt', trim_token(texts_readme, 2000))
 
 texts_html = read_text(
     'data/NVEnc.html')
@@ -29,9 +26,29 @@ regex = r"<!-- saved from url=\(\d+\).+? -->"
 url = URLExtract().find_urls(re.search(regex, texts_html).group())[0]
 package_info.update({'pageURL': url})
 
-files_and_folders = get_files_and_folders(
-    extract('data/Aviutl_NVEnc_7.31.zip'))
+extracted_folder = extract('data/Aviutl_NVEnc_7.31.zip')
+files_and_folders = get_files_and_folders(extracted_folder)
 package_info.update({'files':  ext_filter(
     files_and_folders['files']), 'folders': files_and_folders['folders']})
 
+texts_readme = read_text(
+    [p for p in glob.glob(extracted_folder + "/**", recursive=True)
+     if re.search('(?i)readme', p)][0])
+write_text('workspace/trim-readme.txt', trim_token(texts_readme, 2000))
+
 write_text('workspace/package-info.txt', package_info)
+
+separater = '-'*16
+prompt = '\n'.join([
+    '今回インストールするパッケージのメタデータです。',
+    read_text('workspace/package-info.txt'),
+    separater,
+    'Readmeファイルの説明です。',
+    read_text('workspace/trim-html.txt'),
+    separater,
+    '公式サイトの説明です。',
+    read_text('workspace/trim-readme.txt'),
+    separater,
+    read_text('main_prompt.txt'),])
+write_text('workspace/prompt.txt', prompt)
+print(count_token(prompt))
