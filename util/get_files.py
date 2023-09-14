@@ -27,11 +27,20 @@ aviutl_related_extensions = {'.abc',
                              '.xml',
                              '.zip'}
 
+aviutl_related_folders = {'plugins', 'script', 'browser'}
+
 
 def ext_filter(files):
     return [
         file for file in files
         if os.path.splitext(file)[1] in aviutl_related_extensions
+    ]
+
+
+def folder_filter(folders):
+    return [
+        folder for folder in folders
+        if os.path.basename(folder) not in aviutl_related_folders
     ]
 
 
