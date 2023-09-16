@@ -4,7 +4,8 @@ import os
 
 
 def extract(filepath):
-    folderpath = os.path.splitext(filepath)[0]
+    folderpath = os.path.join(
+        'workspace', os.path.splitext(os.path.basename(filepath))[0])
     try:
         shutil.rmtree(folderpath)
     except FileNotFoundError:

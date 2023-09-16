@@ -1,5 +1,7 @@
+import glob
 import hashlib
 import os
+import re
 
 aviutl_related_extensions = {'.abc',
                              '.anm',
@@ -89,3 +91,8 @@ def calc_sha384(file_path):
             sha384.update(chunk)
 
     return "sha384-" + sha384.hexdigest()
+
+
+def search_file(folder, regex):
+    return [p for p in glob.glob(
+        os.path.join(folder, "**"), recursive=True)if re.search('(?i)' + regex, p)][0]

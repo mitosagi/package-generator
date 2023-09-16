@@ -2,19 +2,15 @@ import json
 import os
 import yaml
 from util.text_io import read_text, write_text
-from util.get_files import calc_sha384
 
-archivepath = 'data/Aviutl_NVEnc_7.31.zip'
-folderpath = 'data/Aviutl_NVEnc_7.31'
 files_and_folders = yaml.safe_load(read_text('workspace/metadata.yaml'))
-
-
+sha368 = json.loads(read_text('workspace/sha368.json'))
 package = json.loads(read_text('workspace/gpt4_output.json'))
 release_files = []
 package['releases'] = [
     {'version': package['latestVersion'],
      'integrity': {
-        'archive': calc_sha384(archivepath),
+        'archive': sha368['archive'],
         'file': release_files
     }}]
 
@@ -30,7 +26,7 @@ for i in range(len(package['files'])):
     if not is_folder:
         release_files.append({
             'target': file['filename'],
-            'hash': calc_sha384(os.path.join(folderpath, raw_filename[0]))})
+            'hash': [hashdict['hash'] for hashdict in sha368['files'] if hashdict['rawfilename'] == raw_filename[0]][0]})
     if os.path.dirname(raw_filename[0]) != '':
         file['archivePath'] = os.path.dirname(raw_filename[0]) + '/'
 
