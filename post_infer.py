@@ -6,10 +6,10 @@ from util.get_files import calc_sha384
 
 archivepath = 'data/Aviutl_NVEnc_7.31.zip'
 folderpath = 'data/Aviutl_NVEnc_7.31'
-files_and_folders = yaml.safe_load(read_text('workspace/package-info.txt'))
+files_and_folders = yaml.safe_load(read_text('workspace/metadata.yaml'))
 
 
-package = json.loads(read_text('data/nvenc_data.json'))
+package = json.loads(read_text('workspace/gpt4_output.json'))
 release_files = []
 package['releases'] = [
     {'version': package['latestVersion'],
@@ -34,4 +34,4 @@ for i in range(len(package['files'])):
     if os.path.dirname(raw_filename[0]) != '':
         file['archivePath'] = os.path.dirname(raw_filename[0]) + '/'
 
-write_text('workspace/one_package.yaml', package)
+write_text('workspace/pakcage.json', package)

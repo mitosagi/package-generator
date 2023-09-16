@@ -25,4 +25,4 @@ def write_text(file_path, text):
 
 
 def text2yaml(data):
-    return str(yaml.dump(data, encoding='utf-8', allow_unicode=True))
+    return yaml.safe_dump(data, allow_unicode=True)
