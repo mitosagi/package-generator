@@ -2,5 +2,6 @@
 .venv
 .vscode
 __pycache__
-/data
+/input
 /workspace
+/output

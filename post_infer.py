@@ -30,4 +30,4 @@ for i in range(len(package['files'])):
     if os.path.dirname(raw_filename[0]) != '':
         file['archivePath'] = os.path.dirname(raw_filename[0]) + '/'
 
-write_text('workspace/new_package.json', package)
+write_text(f"output/{package['id'].replace('/', '_')}.json", package)

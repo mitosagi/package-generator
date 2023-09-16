@@ -6,10 +6,11 @@ from util.token import trim_token, count_token
 from extractcontent3 import ExtractContent
 import re
 
-# zipfilename = 'data/Aviutl_NVEnc_7.31.zip'
-zipfilename = search_file('data', '\.(zip|lzh|7z|rar)')
+input_folder = 'input'
+
+zipfilename = search_file(input_folder, '\.(zip|lzh|7z|rar)')
 extracted_folder = extract(zipfilename)
-texts_html = read_text(search_file('data', '\.html'))
+texts_html = read_text(search_file(input_folder, '\.html'))
 
 extractor = ExtractContent({"threshold": 50})
 extractor.analyse(texts_html)
