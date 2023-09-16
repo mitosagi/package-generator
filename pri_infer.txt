@@ -1,9 +1,9 @@
 {"id":"hebiiro/ShowWaveform","name":"アイテム内音声波形","overview":"拡張編集ウインドウに音声波形を表示する","description":"拡張編集ウィンドウの音声アイテム内に音声波形を表示します。","developer":"hebiiro","dependencies":["aviutl1.10","exedit0.92","MrOjii/LSMASHWorks|pop4bit/LSMASHWorks|VFRmaniac/LSMASHWorks|HolyWu/LSMASHWorks"],"pageURL":"https://github.com/hebiiro/AviUtl-Plugin-ShowWaveform#readme","latestVersion":"7.2.0","files":[{"filename":"plugins/ShowWaveform.auf"},{"filename":"plugins/ShowWaveform.ini"},{"filename":"plugins/ShowWaveform","isDirectory":true}]}
 ----------------
 上記の例を参考に、圧縮ファイル内のファイルをインストールするためのJsonを作成してください。
-- idは`{半角英数の作者名}/{半角英数のバージョン番号を含まないパッケージ名}`です。記号は不可。
+- idは`{半角英数の作者名}/{半角英数のバージョン番号を含まないパッケージ名}`です。記号は不可。AviUtlやPluginやScriptという単語は使用禁止です。
 - latestVersionは配布されたファイルのバージョンです。なければ配布日時や作成日時でも構いません。
 - descriptionは自然な文章になるように推敲を行ってください。
-- overviewはdescriptionを35文字以内に要約したものです。
+- overviewはdescriptionを35文字以内に要約したものです。AviUtlという単語は使用禁止です。
 - filesはインストール時にコピーするファイル・フォルダのリストであり、アンインストール時に削除するファイル・フォルダのリストでもあります。基本的にすべてのファイルフォルダは必要であり指定されるべきです。特にインストール方法について指示がない場合、拡張子が.auf,.aui,.auo,.auc,.aulのファイルとそれと同じフォルダに含まれるファイル・フォルダは`plugins/` フォルダ、.anm,.obj,.cam,.tra,.scnのファイルとそれと同じフォルダに含まれるファイル・フォルダは`script/{半角英数の作者名}/`の中に配置するようにしてください。Readmeファイルやソースコードファイルやソースコードフォルダ内のファイルは不要のためファイル一覧に含めないでください。データ作成時は、最初にフォルダを記述し、次に、冗長な記述を防ぐため指定したフォルダ内に含まれないファイルのみ記述してください。
 ここまでの情報からjsonファイルを生成しjson schemaであるschema_without_difficultdata.jsonにより検証を行ってください。検証の成否の判定は間違いなく行ってください。エラーのある場合はリトライしてください。その後、完成したjsonファイルのダウンロードリンクを提供してください。もし、json.dump()を使用する場合は ensure_ascii=Falseを指定してください。

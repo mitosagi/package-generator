@@ -1,3 +1,4 @@
+import base64
 import glob
 import hashlib
 import os
@@ -90,7 +91,7 @@ def calc_sha384(file_path):
         for chunk in iter(lambda: f.read(4096), b""):
             sha384.update(chunk)
 
-    return "sha384-" + sha384.hexdigest()
+    return "sha384-" + base64.b64encode(sha384.digest()).decode()
 
 
 def search_file(folder, regex):

@@ -1,7 +1,6 @@
-死ね
 .venv
 .vscode
 __pycache__
-/input
+/input*
 /workspace
 /output
