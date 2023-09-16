@@ -8,6 +8,6 @@ prompt = '\n'.join([
     '今回インストールするパッケージの圧縮ファイルから読み取ったメタデータです。',
     read_text('workspace/metadata.yaml'),
     separater,
-    read_text('pri_infer.prompt.txt'),])
+    read_text('pri_infer.txt'),])
 write_text('workspace/gpt4_input.txt', prompt)
 print(count_token(prompt))

@@ -37,6 +37,6 @@ prompt = '\n'.join([
     trim_token(read_text([p for p in glob.glob(
         extracted_folder + "/**", recursive=True)if re.search('(?i)readme', p)][0]), 2000),
     separater,
-    read_text('pri_summary.prompt.txt'),])
+    read_text('pri_summarize.txt'),])
 write_text('workspace/gpt3_input.txt', prompt)
 print(count_token(prompt))
