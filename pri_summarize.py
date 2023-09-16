@@ -35,7 +35,7 @@ prompt = '\n'.join([
     trim_token(plain_text_html, 2000),
     separater,
     '公式サイトの説明です。',
-    trim_token(read_text(search_file(extracted_folder, 'readme')), 2000),
+    trim_token(read_text(search_file(extracted_folder, '(readme|説明)')), 2000),
     separater,
     read_text('pri_summarize.txt'),])
 write_text('workspace/gpt3_input.txt', prompt)

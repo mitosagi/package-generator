@@ -64,8 +64,11 @@ def _get_files_and_folders(base_dir, relative_path='', depth=1, max_depth=4):
         return {"files": files, "folders": folders}
 
     items = os.listdir(base_dir)
+    if (len(items) == 1 and depth == 1):
+        depth = 0
+
     # If a folder contains more than 8 items, ignore its content
-    if len(items) > 8:
+    if len(items) > 8 and depth > 1:
         return {"files": files, "folders": folders}
 
     for item in items:

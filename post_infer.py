@@ -23,11 +23,16 @@ for i in range(len(package['files'])):
     if not raw_filename:
         file['error'] = '存在しないエントリが指定されています。'
         continue
+    if len([entry for entry in package['files']
+            if not file['filename'] == entry['filename'] and file['filename'].startswith(entry['filename'])]) > 0:
+        file['remove'] = True
+        continue
     if not is_folder:
         release_files.append({
             'target': file['filename'],
             'hash': [hashdict['hash'] for hashdict in sha368['files'] if hashdict['rawfilename'] == raw_filename[0]][0]})
     if os.path.dirname(raw_filename[0]) != '':
         file['archivePath'] = os.path.dirname(raw_filename[0]) + '/'
+package['files'] = [file for file in package['files'] if not 'remove' in file]
 
 write_text(f"output/{package['id'].replace('/', '_')}.json", package)
