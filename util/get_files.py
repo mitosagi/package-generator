@@ -1,3 +1,4 @@
+import hashlib
 import os
 
 aviutl_related_extensions = {'.abc',
@@ -45,6 +46,14 @@ def folder_filter(folders):
 
 
 def get_files_and_folders(base_dir, relative_path='', depth=1, max_depth=4):
+    files_and_folders = _get_files_and_folders(
+        base_dir, relative_path, depth, max_depth)
+    files_and_folders['files'] = ext_filter(files_and_folders['files'])
+    files_and_folders['folders'] = folder_filter(files_and_folders['folders'])
+    return files_and_folders
+
+
+def _get_files_and_folders(base_dir, relative_path='', depth=1, max_depth=4):
     files = []
     folders = []
 
@@ -62,7 +71,7 @@ def get_files_and_folders(base_dir, relative_path='', depth=1, max_depth=4):
 
         if os.path.isdir(item_path):
             folders.append(relative_item_path)
-            content = get_files_and_folders(
+            content = _get_files_and_folders(
                 item_path, relative_item_path, depth + 1)
             files.extend(content["files"])
             folders.extend(content["folders"])
@@ -70,3 +79,13 @@ def get_files_and_folders(base_dir, relative_path='', depth=1, max_depth=4):
             files.append(relative_item_path)
 
     return {"files": files, "folders": folders}
+
+
+def calc_sha384(file_path):
+    sha384 = hashlib.sha384()
+
+    with open(file_path, 'rb') as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            sha384.update(chunk)
+
+    return "sha384-" + sha384.hexdigest()
