@@ -97,6 +97,9 @@ def calc_sha384(file_path):
     return "sha384-" + base64.b64encode(sha384.digest()).decode()
 
 
-def search_file(folder, regex):
-    return [p for p in glob.glob(
-        os.path.join(folder, "**"), recursive=True)if re.search('(?i)' + regex, p)][0]
+def search_file(folder, regex_array):
+    for regex in regex_array:
+        results = [p for p in glob.glob(
+            os.path.join(folder, "**"), recursive=True)if re.search('(?i)' + regex, p)]
+        if len(results) > 0:
+            return results[0]

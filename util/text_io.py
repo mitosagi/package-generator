@@ -11,7 +11,8 @@ def read_text(file_path):
     encoding = encoding_info['encoding']
 
     if encoding is None:
-        raise ValueError("Unable to determine the file's encoding.")
+        print("Unable to determine the file's encoding.")
+        encoding = "utf-8"
 
     return raw_data.decode(encoding)
 

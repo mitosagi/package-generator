@@ -8,9 +8,9 @@ import re
 
 input_folder = 'input'
 
-zipfilename = search_file(input_folder, '\.(zip|lzh|7z|rar)')
+zipfilename = search_file(input_folder, ['\.(zip|lzh|7z|rar)'])
 extracted_folder = extract(zipfilename)
-texts_html = read_text(search_file(input_folder, '\.html'))
+texts_html = read_text(search_file(input_folder, ['\.html']))
 
 extractor = ExtractContent({"threshold": 50})
 extractor.analyse(texts_html)
@@ -35,7 +35,8 @@ prompt = '\n'.join([
     trim_token(plain_text_html, 2000),
     separater,
     '公式サイトの説明です。',
-    trim_token(read_text(search_file(extracted_folder, '(readme|説明)')), 2000),
+    trim_token(read_text(search_file(extracted_folder,
+               ['(readme|説明|使)', '\.(md|txt)'])), 2000),
     separater,
     read_text('pri_summarize.txt'),])
 write_text('workspace/gpt3_input.txt', prompt)
