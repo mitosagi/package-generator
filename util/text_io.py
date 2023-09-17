@@ -1,4 +1,5 @@
 import json
+import os
 import yaml
 import chardet
 
@@ -18,6 +19,9 @@ def read_text(file_path):
 
 
 def write_text(file_path, text):
+    dirname = os.path.dirname(file_path)
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
     with open(file_path, 'w', encoding='UTF-8') as f:
         if (type(text) is str):
             f.write(text)

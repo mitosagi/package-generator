@@ -1,0 +1,25 @@
+{
+  "id": "chatcmpl-7zuPgXkioFY1tjlLwh6qwbOPNypOG",
+  "object": "chat.completion",
+  "created": 1694989216,
+  "model": "gpt-4-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "function_call": {
+          "name": "validate_by_json_schema",
+          "arguments": "{\n  \"json\": \n  \"{ \\\"id\\\": \\\"rigaya/NVEnc\\\", \\\"name\\\": \\\"NVEnc\\\", \\\"overview\\\": \\\"Aviutlの出力プラグインで、NVIDIAのGPUエンコーダを使用したエンコードが可能。\\\", \\\"description\\\": \\\"NVEncは、NVIDIAのGPUエンコーダを利用することで、高速な映像エンコードを可能にしたAviutlの出力プラグインです。エンコーダーやmuxerの設定はNVEnc.iniファイルから調整することが可能です。\\\", \\\"developer\\\": \\\"rigaya\\\", \\\"latestVersion\\\": \\\"7.31\\\", \\\"files\\\": [ { \\\"filename\\\": \\\"plugins/NVEnc.auo\\\" }, { \\\"filename\\\": \\\"plugins/NVEnc.zh.ini\\\" }, { \\\"filename\\\": \\\"plugins/auo_setup.auf\\\" }, { \\\"filename\\\": \\\"plugins/NVEnc.en.ini\\\" }, { \\\"filename\\\": \\\"plugins/NVEnc.ini\\\" }, { \\\"filename\\\": \\\"plugins/NVEnc_stg\\\", \\\"isDirectory\\\": true }, { \\\"filename\\\": \\\"exe_files\\\", \\\"isDirectory\\\": true } ] }\"\n}"
+        }
+      },
+      "finish_reason": "function_call"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1429,
+    "completion_tokens": 279,
+    "total_tokens": 1708
+  }
+}
