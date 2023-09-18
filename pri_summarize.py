@@ -20,6 +20,7 @@ def pri_summarize():
 
     metadata = {
         'title': title,
+        'archiveName': os.path.basename(zipfilename)
     } | get_files_and_folders(extracted_folder)
     metadata_yaml = text2yaml(metadata)
     write_text('workspace/metadata.yaml', metadata_yaml)

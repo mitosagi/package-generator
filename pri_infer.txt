@@ -1,9 +1,11 @@
-{"id":"hebiiro/ShowWaveform","name":"アイテム内音声波形","overview":"拡張編集ウインドウに音声波形を表示する","description":"拡張編集ウィンドウの音声アイテム内に音声波形を表示します。","developer":"hebiiro","dependencies":["aviutl1.10","exedit0.92","MrOjii/LSMASHWorks|pop4bit/LSMASHWorks|VFRmaniac/LSMASHWorks|HolyWu/LSMASHWorks"],"pageURL":"https://github.com/hebiiro/AviUtl-Plugin-ShowWaveform#readme","latestVersion":"7.2.0","files":[{"filename":"plugins/ShowWaveform.auf"},{"filename":"plugins/ShowWaveform.ini"},{"filename":"plugins/ShowWaveform","isDirectory":true}]}
+{"id":"hebiiro/ShowWaveform","name":"アイテム内音声波形","overview":"拡張編集ウインドウに音声波形を表示する","description":"拡張編集ウィンドウの音声アイテム内に音声波形を表示します。","developer":"hebiiro","dependencies":["aviutl1.10","exedit0.92","ePi/patch","MrOjii/LSMASHWorks|pop4bit/LSMASHWorks|VFRmaniac/LSMASHWorks|HolyWu/LSMASHWorks"],"pageURL":"https://github.com/hebiiro/AviUtl-Plugin-ShowWaveform#readme","latestVersion":"7.2.0","files":[{"filename":"plugins/ShowWaveform.auf"},{"filename":"plugins/ShowWaveform.ini"},{"filename":"plugins/ShowWaveform","isDirectory":true}]}
 ----------------
 上記の例を参考に、圧縮ファイル内のファイルをインストールするためのJsonを作成してください。
-- idは`{半角英数の作者名}/{半角英数のバージョン番号を含まないパッケージ名}`です。記号は不可。AviUtlやPluginやScriptという単語は使用禁止です。
-- latestVersionは配布されたファイルのバージョンです。なければ配布日時や作成日時でも構いません。
-- descriptionは自然な文章になるように推敲を行ってください。
+- idは`{作者名}/{バージョン番号を含まないパッケージ名}`形式かつパッケージ名はキャメルケースの半角英字です。AviUtlやPluginやScriptという単語は使用禁止です。
+- nameは日本語による簡潔なパッケージの名前です。バージョン番号や、AviUtlやPluginやScriptという単語は使用禁止です。
+- descriptionは自然な文章になるように推敲を行ってください。Visual C++ 再頒布可能パッケージが必要な場合は文章の最後に"【動作にはVisual C++ 再頒布可能パッケージ 20xx x86(32bit)のインストールが必要です】"と追記してください。
 - overviewはdescriptionを35文字以内に要約したものです。AviUtlという単語は使用禁止です。
-- nameはパッケージの名称です。バージョン番号や、AviUtlやPluginやScriptという単語は使用禁止です。
-- filesはインストール時にコピーするファイル・フォルダのリストであり、アンインストール時に削除するファイル・フォルダのリストでもあります。基本的にすべてのファイルフォルダは必要であり指定されるべきです。特にインストール方法について指示がない場合、拡張子が.auf,.aui,.auo,.auc,.aulのファイルまたはそのファイルと同一の親フォルダに含まれる任意のファイル・フォルダは`plugins/` フォルダ、.anm,.obj,.cam,.tra,.scnのファイルまたはそのファイルと同一の親フォルダに含まれる任意のファイル・フォルダは`script/{半角英数の作者名}/`の中に配置するようにしてください。Readmeファイルやライセンスファイルやソースコードファイルやソースコードフォルダ内のファイルは不要のためファイル一覧に含めないでください。データ作成時は、最初にisDirectoryのあるエントリを記述し、次に、冗長な記述を防ぐためisDirectory指定したフォルダ内に含まれないファイルのみ記述してください。
+- developerは日本語で記述できる場合は日本語にしてください。わからない場合は、idに含まれる作者名と同一にします。
+- dependenciesには依存するAviUtl(aviutl)バージョン、拡張編集(exedit)バージョン、その他パッケージid('/'区切りの半角英字)について指定がある場合のみ記述。
+- latestVersionは配布されたファイルのバージョンです。圧縮ファイルのファイル名も参考にできます。なければ配布日時や作成日時でも構いません。
+- filesについては、基本的にすべてのファイルフォルダは必要であり指定されるべきです。特にインストール方法について指示がない場合、拡張子が.auf,.aui,.auo,.auc,.aulのファイルまたはそのファイルと同一の親フォルダに含まれる任意のファイル・フォルダは`plugins/` フォルダ、.anm,.obj,.cam,.tra,.scnのファイルまたはそのファイルと同一の親フォルダに含まれる任意のファイル・フォルダは`script/{半角英数の作者名}/`の中に配置するようにしてください。Readmeファイルやライセンスファイルやソースコードファイルやソースコードフォルダ内のファイルは不要のためファイル一覧に含めないでください。データ作成時は、最初にisDirectoryのあるエントリを記述し、次に、冗長な記述を防ぐためisDirectory指定したフォルダ内に含まれないファイルのみ記述してください。

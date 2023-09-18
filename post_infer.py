@@ -10,6 +10,7 @@ def post_infer(json_prompt):
     package = json.loads(json_prompt)
     release_files = []
     package['pageURL'] = hidden_metadata['pageURL']
+    package['downloadURLs'] = ['']
     package['releases'] = [
         {'version': package['latestVersion'],
          'integrity': {
