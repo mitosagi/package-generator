@@ -1,4 +1,5 @@
 import os
+from util.html2text import html2text
 from util.text_io import read_text, text2yaml, write_text
 from util.get_files import calc_sha384, get_files_and_folders, search_file
 from util.extract_zip import extract
@@ -14,12 +15,11 @@ def pri_summarize():
     extracted_folder = extract(zipfilename)
     texts_html = read_text(search_file(input_folder, ['\.html']))
 
-    extractor = ExtractContent({"threshold": 50})
-    extractor.analyse(texts_html)
-    plain_text_html, title = extractor.as_text()
+    plain_text_html, headers, title = html2text(texts_html)
 
     metadata = {
         'title': title,
+        'headers': headers,
         'archiveName': os.path.basename(zipfilename)
     } | get_files_and_folders(extracted_folder)
     metadata_yaml = text2yaml(metadata)

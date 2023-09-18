@@ -1,10 +1,15 @@
-{"id":"hebiiro/ShowWaveform","name":"アイテム内音声波形","overview":"拡張編集ウインドウに音声波形を表示する","description":"拡張編集ウィンドウの音声アイテム内に音声波形を表示します。","developer":"hebiiro","dependencies":["aviutl1.10","exedit0.92","ePi/patch","MrOjii/LSMASHWorks|pop4bit/LSMASHWorks|VFRmaniac/LSMASHWorks|HolyWu/LSMASHWorks"],"pageURL":"https://github.com/hebiiro/AviUtl-Plugin-ShowWaveform#readme","latestVersion":"7.2.0","files":[{"filename":"plugins/ShowWaveform.auf"},{"filename":"plugins/ShowWaveform.ini"},{"filename":"plugins/ShowWaveform","isDirectory":true}]}
+今回作成するjsonファイルの例です。
+{"id":"hebiiro/ShowWaveform","description":"拡張編集ウィンドウの音声アイテム内に音声波形を表示します。","overview":"拡張編集ウインドウに音声波形を表示する","name":"アイテム内音声波形","developer":"hebiiro","dependencies":["aviutl1.10","exedit0.92","ePi/patch","MrOjii/LSMASHWorks|pop4bit/LSMASHWorks|VFRmaniac/LSMASHWorks|HolyWu/LSMASHWorks"],"latestVersion":"7.2.0","files":[{"filename":"plugins/ShowWaveform.auf"},{"filename":"plugins/ShowWaveform.ini"},{"filename":"plugins/ShowWaveform","isDirectory":true}]}
 ----------------
-上記の例を参考に、圧縮ファイル内のファイルをインストールするためのJsonを作成してください。
-- idは`{作者名}/{バージョン番号を含まないパッケージ名}`形式かつパッケージ名はキャメルケースの半角英字です。AviUtlやPluginやScriptという単語は使用禁止です。
-- nameは日本語による25文字以内で表されるパッケージの名前です。ユーザーに敬遠されないよう平易な表現を心がけてください。バージョン番号や、AviUtlやPluginやScriptという単語は使用禁止です。
-- descriptionは自然な文章になるように推敲を行ってください。Visual C++ 再頒布可能パッケージが必要な場合は文章の最後に"【動作にはVisual C++ 再頒布可能パッケージ 20xx x86(32bit)のインストールが必要です】"と追記してください。
-- overviewはdescriptionを35文字以内に要約したものです。AviUtlという単語は使用禁止です。
+ここからが本文です。
+
+1. まず、このパッケージが解決する課題とそれに対するソリューションについて教えてください。2. より先に答えてください。
+
+2. 次に、上記の例を参考に、圧縮ファイル内のファイルをインストールするためのJsonを作成してください。
+- idは`{作者名}/{バージョン番号を含まないパッケージ名}`形式かつパッケージ名はキャメルケースの半角英字です。AviUtlやプラグインやスクリプトという単語は使用禁止です。作者名についてはページのタイトルも参考になります。それでもわからない場合は'unknown'としてください。
+- descriptionは自然な文章になるように推敲を行ってください。Visual C++ 再頒布可能パッケージが必要な場合は文章の最後に"動作にはVisual C++ 再頒布可能パッケージ 20xx x86(32bit)のインストールが必要です。"と追記してください。
+- overviewはdescriptionを35文字以内に要約したものです。このパッケージのソリューションです。AviUtlという単語は使用禁止です。
+- nameは日本語により25文字以内で表されるパッケージ名です。バージョン番号や、AviUtlやプラグインやスクリプトという単語は使用禁止です。
 - developerは日本語で記述できる場合は日本語にしてください。わからない場合は、idに含まれる作者名と同一にします。
 - dependenciesにはAviUtl(aviutl)、拡張編集(exedit)について依存するバージョンが指定されている場合は記述、バージョン指定のない場合は記述しないでください。'ePi/patch'(pacth.aul)について必要がある場合のみ記述。
 - latestVersionは配布されたファイルのバージョンです。圧縮ファイルのファイル名も参考にできます。なければ配布日時や作成日時でも構いません。
