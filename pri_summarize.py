@@ -4,7 +4,6 @@ from util.text_io import read_text, text2yaml, write_text
 from util.get_files import calc_sha384, get_files_and_folders, search_file
 from util.extract_zip import extract
 from util.token import trim_token, count_token
-from extractcontent3 import ExtractContent
 import re
 
 
@@ -31,20 +30,20 @@ def pri_summarize():
                            'hash': calc_sha384(os.path.join(extracted_folder, file))}
                           for file in metadata['files']]})
 
+    readme_path = search_file(
+        extracted_folder, ['(readme|説明|使)', '\.(md|txt)'])
+    readme_text = read_text(readme_path) if readme_path else ''
+
     separater = '-'*16
     return '\n'.join([
         '今回インストールするパッケージの圧縮ファイルから読み取ったメタデータです。',
         metadata_yaml,
         separater,
-        '圧縮ファイルのファイル名です',
-        zipfilename,
-        separater,
-        '圧縮ファイルに含まれるReadmeファイルの説明です。',
+        '公式サイトの説明です。',
         trim_token(plain_text_html, 2000),
         separater,
-        '公式サイトの説明です。',
-        trim_token(read_text(search_file(extracted_folder,
-                                         ['(readme|説明|使)', '\.(md|txt)'])), 2000),
+        '圧縮ファイルに含まれるReadmeファイルの説明です。',
+        trim_token(readme_text, 2000),
         separater,
         read_text('pri_summarize.txt'),])
 
