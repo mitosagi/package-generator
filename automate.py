@@ -8,7 +8,7 @@ from currency_converter import CurrencyConverter
 
 from util.api_log import api_log
 from util.text_io import read_text, write_text
-from util.token import count_token
+from util.gpt_token import count_token
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 currencyConverter = CurrencyConverter()

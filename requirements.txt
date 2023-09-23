@@ -6,4 +6,5 @@ https://github.com/wummel/patool/archive/refs/heads/master.zip
 pyyaml
 openai
 currencyconverter
-BeautifulSoup
+beautifulsoup4
+pyppeteer

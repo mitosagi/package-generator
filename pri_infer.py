@@ -1,5 +1,5 @@
 from util.text_io import read_text, write_text
-from util.token import count_token
+from util.gpt_token import count_token
 
 
 def pri_infer(info_prompt, isAPI=True):

@@ -1,9 +1,9 @@
 import os
-from util.html2text import html2text
+from util.html2text import url2text
 from util.text_io import read_text, text2yaml, write_text
 from util.get_files import calc_sha384, get_files_and_folders, search_file
 from util.extract_zip import extract
-from util.token import trim_token, count_token
+from util.gpt_token import trim_token, count_token
 import re
 
 
@@ -14,7 +14,10 @@ def pri_summarize():
     extracted_folder = extract(zipfilename)
     texts_html = read_text(search_file(input_folder, ['\.html']))
 
-    plain_text_html, headers, title = html2text(texts_html)
+    plain_text_html, headers, title = url2text(
+        # 'https://qiita.com/m-m-n/items/9e5f601ed7c4997b66f8')
+        # 'https://www.nicovideo.jp/watch/sm16915418')
+        'https://github.com/team-apm/apm-data/issues/675')
 
     metadata = {
         'title': title,
