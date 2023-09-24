@@ -6,23 +6,20 @@ from util.extract_zip import extract
 from util.gpt_token import trim_token, count_token
 
 
-def pri_summarize(urls):
-    input_folder = 'input'
-
-    zipfilename = search_file(input_folder, ['\.(zip|lzh|7z|rar)'])
-    extracted_folder, modification_time = extract(zipfilename)
+def pri_summarize(urls, archivePath):
+    extracted_folder, modification_time = extract(archivePath)
 
     texts = [url2text(url) for url in urls]
 
     metadata = {
-        'archiveName': os.path.basename(zipfilename),
+        'archiveName': os.path.basename(archivePath),
         'archiveModificationTime': modification_time,
         'pageURL': urls,
     } | get_files_and_folders(extracted_folder)
     metadata_yaml = text2yaml(metadata)
     write_text('workspace/metadata.yaml', metadata_yaml)
     write_text('workspace/hidden_metadata.json',
-               {'archive_hash': calc_sha384(zipfilename),
+               {'archive_hash': calc_sha384(archivePath),
                 'files_hash': [{'rawfilename': file,
                                 'hash': calc_sha384(os.path.join(extracted_folder, file))}
                                for file in metadata['files']]})
@@ -47,6 +44,6 @@ def pri_summarize(urls):
 
 if __name__ == '__main__':
     prompt = pri_summarize(['https://www.nicovideo.jp/watch/sm16915418',
-                            'https://github.com/team-apm/apm-data/issues/675'])
+                            'https://github.com/team-apm/apm-data/issues/675'], search_file('input', ['\.(zip|lzh|7z|rar)']))
     write_text('workspace/gpt3_input.txt', prompt)
     print(count_token(prompt))
