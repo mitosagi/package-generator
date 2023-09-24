@@ -1,7 +1,21 @@
+from playwright.async_api import async_playwright
+import asyncio
 import re
 from bs4 import BeautifulSoup
 from extractcontent3 import ExtractContent
+import nest_asyncio
 import requests
+nest_asyncio.apply()
+
+
+async def url2html(url):
+    async with async_playwright() as p:
+        browser = await p.webkit.launch()
+        page = await browser.new_page()
+        await page.goto(url)
+        html = await page.content()
+        await browser.close()
+    return html
 
 
 def html2text(html_string):
@@ -25,7 +39,5 @@ def url2text(url):
     if re.search(nico_regex, url):
         nico_url = 'https://ext.nicovideo.jp/api/getthumbinfo/' + \
             re.search(nico_regex, url).group(1)
-        return requests.post(nico_url).text
-    text = requests.post(url).text
-    print(text)
-    return html2text(text)
+        return requests.post(nico_url).textF
+    return html2text(asyncio.run(url2html(url)))

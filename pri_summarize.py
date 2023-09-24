@@ -43,7 +43,7 @@ def pri_summarize(urls, archivePath):
 
 
 if __name__ == '__main__':
-    prompt = pri_summarize(['https://www.nicovideo.jp/watch/sm16915418',
-                            'https://github.com/team-apm/apm-data/issues/675'], search_file('input', ['\.(zip|lzh|7z|rar)']))
+    prompt = pri_summarize(['https://github.com/nazonoSAUNA/tl_Item_cut'],
+                           search_file('input', ['\.(zip|lzh|7z|rar)']))
     write_text('workspace/gpt3_input.txt', prompt)
     print(count_token(prompt))

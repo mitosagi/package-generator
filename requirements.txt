@@ -7,4 +7,5 @@ pyyaml
 beautifulsoup4
 ipywidgets
 ipykernel 
-jinja2 
+jinja2
+playwright
