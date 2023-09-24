@@ -39,5 +39,5 @@ def url2text(url):
     if re.search(nico_regex, url):
         nico_url = 'https://ext.nicovideo.jp/api/getthumbinfo/' + \
             re.search(nico_regex, url).group(1)
-        return requests.post(nico_url).textF
+        return requests.post(nico_url).text
     return html2text(asyncio.run(url2html(url)))
