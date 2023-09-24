@@ -19,12 +19,15 @@ async def url2html(url):
 
 
 def html2text(html_string):
+    soup = BeautifulSoup(html_string, "html.parser")
+    github = soup.find(class_="markdown-body")
+    html_string = html_string if not github else str(github)
+
     extractor = ExtractContent({"threshold": 50})
     extractor.analyse(html_string)
     plain_text, title = extractor.as_text()
-    html, _ = extractor.as_html()
 
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(html_string, "html.parser")
     headers = []
     for tag in soup.find_all(True):
         if tag.name in ["h1", "h2", "h3", "h4", "h5", "h6"]:
