@@ -1,3 +1,4 @@
+from datetime import datetime
 from pyunpack import Archive
 import os
 import zipfile
@@ -8,6 +9,8 @@ def extract(filepath):
     folderpath = os.path.join(
         'workspace', os.path.splitext(os.path.basename(filepath))[0])
     ext = os.path.splitext(filepath)[1]
+
+    latest_modification_time = datetime(1980, 1, 1)
 
     if ext == '.zip':
         with zipfile.ZipFile(filepath) as z:
@@ -27,7 +30,20 @@ def extract(filepath):
             for info in z.infolist():
                 info.filename = info.filename.encode('cp437').decode(encoding)
                 z.extract(info, path=folderpath)
+
+            # get modification time
+            files_in_zip = z.infolist()
+            for file_info in files_in_zip:
+                file_modification_time = datetime(*file_info.date_time)
+                if file_modification_time > latest_modification_time:
+                    latest_modification_time = file_modification_time
     else:
         Archive(filepath).extractall(folderpath, True)
 
-    return folderpath
+    if hasattr(latest_modification_time, 'strftime'):
+        latest_modification_time = latest_modification_time.strftime(
+            '%Y/%m/%d')
+    if latest_modification_time == datetime(1980, 1, 1):
+        latest_modification_time == ''
+
+    return folderpath, latest_modification_time

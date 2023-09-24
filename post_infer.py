@@ -5,23 +5,23 @@ from util.text_io import read_text, write_text
 
 
 def post_infer(json_prompt):
-    files_and_folders = yaml.safe_load(read_text('workspace/metadata.yaml'))
-    hidden_metadata = json.loads(read_text('workspace/hidden_metadata.json'))
+    metadata = yaml.safe_load(read_text(
+        'workspace/metadata.yaml')) | json.loads(read_text('workspace/hidden_metadata.json'))
     package = json.loads(json_prompt)
     release_files = []
-    package['pageURL'] = hidden_metadata['pageURL']
+    package['pageURL'] = metadata['pageURL']
     package['downloadURLs'] = ['']
     package['releases'] = [
         {'version': package['latestVersion'],
          'integrity': {
-            'archive': hidden_metadata['archive'],
+            'archive': metadata['archive_hash'],
             'file': release_files
         }}]
 
     for i in range(len(package['files'])):
         file = package['files'][i]
         is_folder = 'isDirectory' in file and file['isDirectory']
-        raw_filename = [match for match in files_and_folders['folders' if is_folder else 'files']
+        raw_filename = [match for match in metadata['folders' if is_folder else 'files']
                         if os.path.basename(match) == os.path.basename(file['filename'])]
         if not raw_filename:
             file['error'] = '存在しないエントリが指定されています。'
@@ -33,7 +33,7 @@ def post_infer(json_prompt):
         if not is_folder:
             release_files.append({
                 'target': file['filename'],
-                'hash': [hashdict['hash'] for hashdict in hidden_metadata['files'] if hashdict['rawfilename'] == raw_filename[0]][0]})
+                'hash': [hashdict['hash'] for hashdict in metadata['files_hash'] if hashdict['rawfilename'] == raw_filename[0]][0]})
         if os.path.dirname(raw_filename[0]) != '':
             file['archivePath'] = os.path.dirname(raw_filename[0]) + '/'
     package['files'] = [

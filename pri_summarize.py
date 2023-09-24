@@ -4,34 +4,30 @@ from util.text_io import read_text, text2yaml, write_text
 from util.get_files import calc_sha384, get_files_and_folders, search_file
 from util.extract_zip import extract
 from util.gpt_token import trim_token, count_token
-import re
 
 
 def pri_summarize():
     input_folder = 'input'
 
     zipfilename = search_file(input_folder, ['\.(zip|lzh|7z|rar)'])
-    extracted_folder = extract(zipfilename)
-    texts_html = read_text(search_file(input_folder, ['\.html']))
+    extracted_folder, modification_time = extract(zipfilename)
 
-    plain_text_html, headers, title = url2text(
-        # 'https://qiita.com/m-m-n/items/9e5f601ed7c4997b66f8')
-        # 'https://www.nicovideo.jp/watch/sm16915418')
-        'https://github.com/team-apm/apm-data/issues/675')
+    urls = ['https://www.nicovideo.jp/watch/sm16915418',
+            'https://github.com/team-apm/apm-data/issues/675']
+    texts = [url2text(url) for url in urls]
 
     metadata = {
-        'title': title,
-        'headers': headers,
-        'archiveName': os.path.basename(zipfilename)
+        'archiveName': os.path.basename(zipfilename),
+        'archiveModificationTime': modification_time,
+        'pageURL': urls,
     } | get_files_and_folders(extracted_folder)
     metadata_yaml = text2yaml(metadata)
     write_text('workspace/metadata.yaml', metadata_yaml)
     write_text('workspace/hidden_metadata.json',
-               {'pageURL': [(result.groups()[0] if result else '') for result in [re.search(r"<!-- saved from url=\(\d+\)(.+?) -->", texts_html)]][0],
-                'archive': calc_sha384(zipfilename),
-                'files': [{'rawfilename': file,
-                           'hash': calc_sha384(os.path.join(extracted_folder, file))}
-                          for file in metadata['files']]})
+               {'archive_hash': calc_sha384(zipfilename),
+                'files_hash': [{'rawfilename': file,
+                                'hash': calc_sha384(os.path.join(extracted_folder, file))}
+                               for file in metadata['files']]})
 
     readme_path = search_file(
         extracted_folder, ['(readme|説明|使)', '\.(md|txt)'])
@@ -43,7 +39,7 @@ def pri_summarize():
         metadata_yaml,
         separater,
         '公式サイトの説明です。',
-        trim_token(plain_text_html, 2000),
+        trim_token('\n'.join(texts), 2000),
         separater,
         '圧縮ファイルに含まれるReadmeファイルの説明です。',
         trim_token(readme_text, 2000),
