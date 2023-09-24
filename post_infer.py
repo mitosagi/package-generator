@@ -9,7 +9,7 @@ def post_infer(json_prompt):
         'workspace/metadata.yaml')) | json.loads(read_text('workspace/hidden_metadata.json'))
     package = json.loads(json_prompt)
     release_files = []
-    package['pageURL'] = metadata['pageURL']
+    package['pageURL'] = metadata['pageURL'][0]
     package['downloadURLs'] = ['']
     package['releases'] = [
         {'version': package['latestVersion'],
