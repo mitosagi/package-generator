@@ -14,7 +14,7 @@ def pri_infer(info_prompt):
         read_text('workspace/metadata.yaml').strip(),
         separater,
         read_text('pri_infer.txt').strip(),
-        'これらの情報からjsonファイルを生成し上記のjson schemaによりエラーを出力して検証を行ってください。エラーのある場合はリトライしてください。その後、完成したjsonファイルのダウンロードリンクを提供してください。Pythonにschemaを入力する際はFalseの先頭を大文字にしてください。もし、json.dump()を使用する場合は ensure_ascii=Falseを指定してください。'])
+        'これらの情報からjsonファイルを生成し上記のjson schemaによりエラーを出力して検証を行ってください。エラーのある場合はリトライしてください。その後、完成したjsonファイルのダウンロードリンクを提供してください。Pythonにschemaを入力する際はFalseの先頭を大文字にしてdescription以外の要素は省略せず入力してください。もし、json.dump()を使用する場合は ensure_ascii=Falseを指定してください。'])
 
 
 if __name__ == '__main__':
