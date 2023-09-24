@@ -6,14 +6,12 @@ from util.extract_zip import extract
 from util.gpt_token import trim_token, count_token
 
 
-def pri_summarize():
+def pri_summarize(urls):
     input_folder = 'input'
 
     zipfilename = search_file(input_folder, ['\.(zip|lzh|7z|rar)'])
     extracted_folder, modification_time = extract(zipfilename)
 
-    urls = ['https://www.nicovideo.jp/watch/sm16915418',
-            'https://github.com/team-apm/apm-data/issues/675']
     texts = [url2text(url) for url in urls]
 
     metadata = {
@@ -48,6 +46,7 @@ def pri_summarize():
 
 
 if __name__ == '__main__':
-    prompt = pri_summarize()
+    prompt = pri_summarize(['https://www.nicovideo.jp/watch/sm16915418',
+                            'https://github.com/team-apm/apm-data/issues/675'])
     write_text('workspace/gpt3_input.txt', prompt)
     print(count_token(prompt))

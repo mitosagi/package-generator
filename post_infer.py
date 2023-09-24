@@ -40,6 +40,7 @@ def post_infer(json_prompt):
         file for file in package['files'] if not 'remove' in file]
 
     write_text(f"output/{package['id'].replace('/', '_')}.json", package)
+    return package
 
 
 if __name__ == '__main__':

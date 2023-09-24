@@ -4,7 +4,7 @@ extractcontent3
 pyunpack
 https://github.com/wummel/patool/archive/refs/heads/master.zip
 pyyaml
-openai
-currencyconverter
 beautifulsoup4
-pyppeteer
+ipywidgets
+ipykernel 
+jinja2 
