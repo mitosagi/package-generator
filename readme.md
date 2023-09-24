@@ -1,7 +1,7 @@
 # Package Generator
 AviUtlプラグイン・スクリプトの解説とインストール手順をREADMEや解説URLから生成、`AviUtl Package Manager`により読み込める形式のデータとして出力します。
 
-Google Colabとお好きな大規模言語モデル(LLM)を組み合わせて動きます。pythonインタプリンタ付きの[ChatGPT Advanced Data Analysis](https://chat.openai.com/)がおすすめですが、無料で使える[GoogleのBard](https://bard.google.com/)でも動作します。
+Google Colabとお好きな大規模言語モデル(LLM)を組み合わせて動きます。pythonインタプリタ付きの[ChatGPT Advanced Data Analysis](https://chat.openai.com/)がおすすめですが、無料で使える[GoogleのBard](https://bard.google.com/)でも動作します。
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mitosagi/package-generator/blob/main/apm.ipynb)
 
