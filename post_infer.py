@@ -27,7 +27,7 @@ def post_infer(json_prompt):
             file['error'] = '存在しないエントリが指定されています。'
             continue
         if len([entry for entry in package['files']
-                if not file['filename'] == entry['filename'] and file['filename'].startswith(entry['filename'])]) > 0:
+                if not file['filename'] == entry['filename'] and file['filename'].startswith(entry['filename'] + '/')]) > 0:
             file['remove'] = True
             continue
         if not is_folder:
