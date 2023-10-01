@@ -16,7 +16,8 @@ def extract(filepath):
         with zipfile.ZipFile(filepath) as z:
             raw_data = bytearray()
             for info in z.infolist():
-                raw_data += info.filename.encode('cp437')
+                raw_data += info.filename.encode(
+                    'utf-8' if info.flag_bits & 0x800 else 'cp437')
 
             encoding_info = chardet.detect(raw_data)
             encoding = encoding_info['encoding']
@@ -28,7 +29,8 @@ def extract(filepath):
                 encoding = "utf-8"
 
             for info in z.infolist():
-                info.filename = info.filename.encode('cp437').decode(encoding)
+                info.filename = info.filename.encode(
+                    'utf-8' if info.flag_bits & 0x800 else 'cp437').decode(encoding)
                 z.extract(info, path=folderpath)
 
             # get modification time
